@@ -5,7 +5,7 @@
         <ul>
           <li><router-link to="/">Accueil</router-link></li>
           <li><router-link to="/menu">Menu</router-link></li>
-          <li><router-link to="/panier">Panier</router-link></li>
+          <li><router-link to="/cart">Panier</router-link></li>
           <li><router-link to="/admin">Commandes (Admin)</router-link></li>
         </ul>
       </nav>

@@ -1,43 +1,36 @@
 <template>
-    <div class="panier-item">
-      <div class="item-details">
-        <h3>{{ item.name }}</h3>
-        <p>Prix unitaire : {{ item.price }} €</p>
-        <p>Total : {{ (item.price * item.quantity).toFixed(2) }} €</p>
-      </div>
-      <div class="item-actions">
-        <button @click="decrementQuantity" :disabled="item.quantity <= 1">-</button>
-        <span>{{ item.quantity }}</span>
-        <button @click="incrementQuantity">+</button>
-        <button @click="removeItem" class="remove-button">Supprimer</button>
-      </div>
+  <div class="panier-item">
+    <div class="item-details">
+      <h3>{{ item.nom }}</h3>
+      <p>Prix unitaire : {{ item.prix }} €</p>
+      <p>Total : {{ (item.prix * item.quantity).toFixed(2) }} €</p>
     </div>
-  </template>
+    <div class="item-actions">
+      <span>{{ item.quantity }}</span>
+      <button @click="removeItem" class="remove-button">Supprimer</button>
+    </div>
+  </div>
+</template>
+
+<script>
+export default {
+  name: "PanierItem",
+  props: {
+    item: {
+      type: Object,
+      required: true,
+    },
+  },
+  methods: {
+    removeItem() {
+      this.$emit("remove-item", this.item.id);
+    },
+  },
+};
+</script>
+
+
   
-  <script>
-  export default {
-    name: "PanierItem",
-    props: {
-      item: {
-        type: Object,
-        required: true,
-      },
-    },
-    methods: {
-      incrementQuantity() {
-        this.$emit("update-quantity", this.item.id, this.item.quantity + 1);
-      },
-      decrementQuantity() {
-        if (this.item.quantity > 1) {
-          this.$emit("update-quantity", this.item.id, this.item.quantity - 1);
-        }
-      },
-      removeItem() {
-        this.$emit("remove-item", this.item.id);
-      },
-    },
-  };
-  </script>
   
   <style scoped>
   .panier-item {
